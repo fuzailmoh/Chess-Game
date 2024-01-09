@@ -1,2 +1,2 @@
-for i in range(5):
-    print(i)
+values = [[1],[2]]
+print(len(values))
