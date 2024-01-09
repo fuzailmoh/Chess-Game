@@ -1697,7 +1697,7 @@ class ChessGame():
                             for square in attackLocations: #going to remove any path that does not go to the king
                                 if([square[0],square[1]] == [piece[0],piece[1]]):
                                     pass
-                                elif(not(square[0] < piece[0] and square[1] > piece[1])):#remove any squares leading to the left or right of the rook 
+                                elif(not(square[0] > piece[0] and square[1] < piece[1])):#remove any squares leading to the left or right of the rook 
                                     squaresToRemove.append(square)
                             for squares in squaresToRemove:
                                 attackLocations.pop(attackLocations.index(squares))
@@ -1750,7 +1750,7 @@ class ChessGame():
                             for square in attackLocations: #going to remove any path that does not go to the king
                                 if([square[0],square[1]] == [piece[0],piece[1]]):
                                     pass
-                                elif(not(square[0] < piece[0] and square[1] > piece[1])):#remove any squares leading to the left or right of the queen 
+                                elif(not(square[0] > piece[0] and square[1] < piece[1])):#remove any squares leading to the left or right of the queen 
                                     squaresToRemove.append(square)
                                 elif(square[0] == piece[0] or square[1] == piece[1]):
                                     squaresToRemove.append(square)
@@ -1919,7 +1919,7 @@ class ChessGame():
                             for square in attackLocations: #going to remove any path that does not go to the king
                                 if([square[0],square[1]] == [piece[0],piece[1]]):
                                     pass
-                                elif(not(square[0] < piece[0] and square[1] > piece[1])):#remove any squares leading to the left or right of the rook 
+                                elif(not(square[0] > piece[0] and square[1] < piece[1])):#remove any squares leading to the left or right of the rook 
                                     squaresToRemove.append(square)
                             for squares in squaresToRemove:
                                 attackLocations.pop(attackLocations.index(squares))
@@ -1972,7 +1972,7 @@ class ChessGame():
                             for square in attackLocations: #going to remove any path that does not go to the king
                                 if([square[0],square[1]] == [piece[0],piece[1]]):
                                     pass
-                                elif(not(square[0] < piece[0] and square[1] > piece[1])):#remove any squares leading to the left or right of the queen 
+                                elif(not(square[0] > piece[0] and square[1] < piece[1])):#remove any squares leading to the left or right of the queen 
                                     squaresToRemove.append(square)
                                 elif(square[0] == piece[0] or square[1] == piece[1]):
                                     squaresToRemove.append(square)
@@ -2224,7 +2224,7 @@ class ChessGame():
              messagebox.showinfo(title = "Tie", message = "Due to stalemate this is a tie")
 
     def checkStalemate(self, color):
-        if()
+        pass
 
     def addImages(self):
         self.W_Pawn = PhotoImage(file = 'ChessGame/Pieces/W_Pawn.gif')
