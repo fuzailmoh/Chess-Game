@@ -1857,22 +1857,16 @@ class ChessGame():
                        if((square in attackPath) and square != [x,y]):
                             squareToRemove.append(square)
                             checkx, checky, checkColor, checkPiece = self.chessMap[int(square[0])][int(square[1])].cget('text').split('_')
+                            if(checkPiece == 'rook'):
+                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[1] == y and row[0] > x and ([x-1,y] in listToEnable) and square == [x+1,y] and (checkPiece == 'rook' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x-1,y])
-                                if(checkPiece == 'rook'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[1] == y and row[0] < x and ([x+1,y] in listToEnable) and square == [x-1,y] and (checkPiece == 'rook' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x+1,y])
-                                if(checkPiece == 'rook'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0] == x and row[1] > y and ([x, y-1] in listToEnable) and square == [x,y+1] and (checkPiece == 'rook' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append(x,y-1)
-                                if(checkPiece == 'rook'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0] == x and row[1] < y and ([x, y+1] in listToEnable) and square == [x,y-1] and (checkPiece == 'rook' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x,y+1])
-                                if(checkPiece == 'rook'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                     #if the rook is in the same row or column as the king then make sure to make it so the king cannot travel backwords as that entire row is in threat
                 if(row[2] == 'knight'):
                     attackPath = self.plan_knight_move(row[0], row[1], 'black', kingCall=True)
@@ -1886,22 +1880,16 @@ class ChessGame():
                         if((square in attackPath) and square != [x,y]):
                             squareToRemove.append(square)
                             checkx, checky, checkColor, checkPiece = self.chessMap[int(square[0])][int(square[1])].cget('text').split('_')
+                            if(checkPiece == 'bishop'):
+                                    squareToRemove.pop(squareToRemove.index(square))
                             if(x-row[0] < 0 and y-row[1] < 0 and (x-row[0] == y-row[1]) and ([x-1,y-1] in listToEnable) and square == [x+1,y+1] and (checkPiece == 'bishop' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but lower and to the right (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x-1,y-1])
-                                if(checkPiece == 'bishop'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(x-row[0] > 0 and y-row[1] > 0 and (x-row[0] == y-row[1]) and ([x+1,y+1] in listToEnable) and square == [x-1,y-1] and (checkPiece == 'bishop' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but upper and to the left (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x+1,y+1])
-                                if(checkPiece == 'bishop'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0]-x > 0 and y-row[1] > 0 and (row[0]-x == y-row[1]) and ([x-1,y+1] in listToEnable) and square == [x+1,y-1] and (checkPiece == 'bishop' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but upper and to the right (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x-1,y+1])
-                                if(checkPiece == 'bishop'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0]-x < 0 and y-row[1] < 0 and (row[0]-x == y-row[1]) and ([x+1,y-1] in listToEnable) and square == [x-1,y+1] and (checkPiece == 'bishop' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but lower and to the left (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x+1,y-1])
-                                if(checkPiece == 'bishop'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                 if(row[2] == 'queen'):
                     attackPath = self.plan_queen_move(row[0], row[1], 'black', kingCall=True)
                     for square in listToEnable:
@@ -1909,38 +1897,24 @@ class ChessGame():
                             squareToRemove.append(square)
                             #if the queen is diagnol to the king then the entire diagnol is in threat and the king cannot go backwards on the diagnoal
                             checkx, checky, checkColor, checkPiece = self.chessMap[int(square[0])][int(square[1])].cget('text').split('_')
-                            if(x-row[0] < 0 and y-row[1] < 0 and (x-row[0] == y-row[1]) and ([x-1,y-1] in listToEnable) and square == [x+1,y+1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but lower and to the right (refer to corrdinate system for easier visualization and clarity on the if condition)
+                            if(checkPiece == 'queen'):
+                                    squareToRemove.pop(squareToRemove.index(square))
+                            if(x-row[0] < 0 and y-row[1] < 0 and (x-row[0] == y-row[1]) and ([x-1,y-1] in listToEnable) and square == [x+1,y+1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the queen is on the same diagnol but lower and to the right (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x-1,y-1])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
-                            if(x-row[0] > 0 and y-row[1] > 0 and (x-row[0] == y-row[1]) and ([x+1,y+1] in listToEnable) and square == [x-1,y-1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but upper and to the left (refer to corrdinate system for easier visualization and clarity on the if condition)
+                            if(x-row[0] > 0 and y-row[1] > 0 and (x-row[0] == y-row[1]) and ([x+1,y+1] in listToEnable) and square == [x-1,y-1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the queen is on the same diagnol but upper and to the left (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x+1,y+1])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
-                            if(row[0]-x > 0 and y-row[1] > 0 and (row[0]-x == y-row[1]) and ([x-1,y+1] in listToEnable) and square == [x+1,y-1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but upper and to the right (refer to corrdinate system for easier visualization and clarity on the if condition)
+                            if(row[0]-x > 0 and y-row[1] > 0 and (row[0]-x == y-row[1]) and ([x-1,y+1] in listToEnable) and square == [x+1,y-1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the queen is on the same diagnol but upper and to the right (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x-1,y+1])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
-                            if(row[0]-x < 0 and y-row[1] < 0 and (row[0]-x == y-row[1]) and ([x+1,y-1] in listToEnable) and square == [x-1,y+1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but lower and to the left (refer to corrdinate system for easier visualization and clarity on the if condition)
+                            if(row[0]-x < 0 and y-row[1] < 0 and (row[0]-x == y-row[1]) and ([x+1,y-1] in listToEnable) and square == [x-1,y+1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the queen is on the same diagnol but lower and to the left (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x+1,y-1])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[1] == y and row[0] > x and ([x-1,y] in listToEnable) and square == [x+1,y] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x-1,y])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[1] == y and row[0] < x and ([x+1,y] in listToEnable) and square == [x-1,y] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x+1,y])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0] == x and row[1] > y and ([x, y-1] in listToEnable) and square == [x,y+1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):
-                                squareToRemove.append(x, y-1)
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
+                                squareToRemove.append([x, y-1])
                             if(row[0] == x and row[1] < y and ([x, y+1] in listToEnable) and square == [x,y-1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x, y+1])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                 if(row[2] == 'king'):
                     enemyKingPath = [row[0],row[1]]
                     if(row[0]-1 >= 0 and row[1]-1 >= 0):
@@ -2001,22 +1975,16 @@ class ChessGame():
                         if((square in attackPath) and square != [x,y]):
                             squareToRemove.append(square)
                             checkx, checky, checkColor, checkPiece = self.chessMap[int(square[0])][int(square[1])].cget('text').split('_')
+                            if(checkPiece == 'rook'):
+                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[1] == y and row[0] > x and ([x-1,y] in listToEnable) and square == [x+1,y] and (checkPiece == 'rook' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x-1,y])
-                                if(checkPiece == 'rook'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[1] == y and row[0] < x and ([x+1,y] in listToEnable) and square == [x-1,y] and (checkPiece == 'rook' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x+1,y])
-                                if(checkPiece == 'rook'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0] == x and row[1] > y and ([x, y-1] in listToEnable) and square == [x,y+1] and (checkPiece == 'rook' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x, y-1])
-                                if(checkPiece == 'rook'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0] == x and row[1] < y and ([x, y+1] in listToEnable) and square == [x,y-1] and (checkPiece == 'rook' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x, y+1])
-                                if(checkPiece == 'rook'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                 if(row[2] == 'knight'):
                     attackPath = self.plan_knight_move(row[0], row[1], 'white', kingCall=True)
                     attackPath.pop(0)
@@ -2029,22 +1997,16 @@ class ChessGame():
                         if((square in attackPath) and square != [x,y]):
                             squareToRemove.append(square)
                             checkx, checky, checkColor, checkPiece = self.chessMap[int(square[0])][int(square[1])].cget('text').split('_')
+                            if(checkPiece == 'bishop'):
+                                    squareToRemove.pop(squareToRemove.index(square))
                             if(x-row[0] < 0 and y-row[1] < 0 and (x-row[0] == y-row[1]) and ([x-1,y-1] in listToEnable) and square == [x+1,y+1] and (checkPiece == 'bishop' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but lower and to the right (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x-1,y-1])
-                                if(checkPiece == 'bishop'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(x-row[0] > 0 and y-row[1] > 0 and (x-row[0] == y-row[1]) and ([x+1,y+1] in listToEnable) and square == [x-1,y-1] and (checkPiece == 'bishop' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but upper and to the left (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x+1,y+1])
-                                if(checkPiece == 'bishop'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0]-x > 0 and y-row[1] > 0 and (row[0]-x == y-row[1]) and ([x-1,y+1] in listToEnable) and square == [x+1,y-1] and (checkPiece == 'bishop' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but upper and to the right (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x-1,y+1])
-                                if(checkPiece == 'bishop'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0]-x < 0 and y-row[1] < 0 and (row[0]-x == y-row[1]) and ([x+1,y-1] in listToEnable) and square == [x-1,y+1] and (checkPiece == 'bishop' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but lower and to the left (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x+1,y-1])
-                                if(checkPiece == 'bishop'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                 if(row[2] == 'queen'):
                     attackPath = self.plan_queen_move(row[0], row[1], 'white', kingCall=True)
                     for square in listToEnable:
@@ -2052,38 +2014,24 @@ class ChessGame():
                             squareToRemove.append(square)
                             #if the queen is diagnol to the king then the entire diagnol is in threat and the king cannot go backwards on the diagnoal
                             checkx, checky, checkColor, checkPiece = self.chessMap[int(square[0])][int(square[1])].cget('text').split('_')
+                            if(checkPiece == 'queen'):
+                                    squareToRemove.pop(squareToRemove.index(square))
                             if(x-row[0] < 0 and y-row[1] < 0 and (x-row[0] == y-row[1]) and ([x-1,y-1] in listToEnable) and square == [x+1,y+1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but lower and to the right (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x-1,y-1])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(x-row[0] > 0 and y-row[1] > 0 and (x-row[0] == y-row[1]) and ([x+1,y+1] in listToEnable) and square == [x-1,y-1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but upper and to the left (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x+1,y+1])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0]-x > 0 and y-row[1] > 0 and (row[0]-x == y-row[1]) and ([x-1,y+1] in listToEnable) and square == [x+1,y-1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but upper and to the right (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x-1,y+1])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0]-x < 0 and y-row[1] < 0 and (row[0]-x == y-row[1]) and ([x+1,y-1] in listToEnable) and square == [x-1,y+1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):#if the bishop is on the same diagnol but lower and to the left (refer to corrdinate system for easier visualization and clarity on the if condition)
                                 squareToRemove.append([x+1,y-1])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[1] == y and row[0] > x and ([x-1,y] in listToEnable) and square == [x+1,y] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x-1,y])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[1] == y and row[0] < x and ([x+1,y] in listToEnable) and square == [x-1,y] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x+1,y])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                             if(row[0] == x and row[1] > y and ([x, y-1] in listToEnable) and square == [x,y+1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):
-                                squareToRemove.append(x, y-1)
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
+                                squareToRemove.append([x, y-1])
                             if(row[0] == x and row[1] < y and ([x, y+1] in listToEnable) and square == [x,y-1] and (checkPiece == 'queen' or checkPiece == 'na') and checkColor != color):
                                 squareToRemove.append([x, y+1])
-                                if(checkPiece == 'queen'):
-                                    squareToRemove.pop(squareToRemove.index(square))
                 if(row[2] == 'king'):
                     enemyKingPath = [row[0],row[1]]
                     if(row[0]-1 >= 0 and row[1]-1 >= 0):
