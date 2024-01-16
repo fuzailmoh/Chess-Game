@@ -1,2 +1,2 @@
 values = [[1],[2]]
-print(len(values))
+print(values.index([4]))
