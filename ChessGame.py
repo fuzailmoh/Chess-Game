@@ -39,9 +39,9 @@ class ChessGame():
     def __init__(self, master):
         #Intialize Welcome Page with Frames and pack them to root page
         ChessGame.topLevelFrame = master
-        master.title('FuzzChess')
+        master.title('NoviceKnight Chess')
         
-        master.minsize(690,380)
+        master.minsize(1040,380)
 
         #Intializing Style Object
         self.style = ttk.Style()
@@ -81,7 +81,7 @@ class ChessGame():
         
         
         ttk.Label(self.headerFrame, image = self.imgWP).pack(side = LEFT, expand = TRUE)
-        ttk.Label(self.headerFrame, text = "Welcome to Fuzail's Chess Game", font= ('Courier', 22), background = 'light blue').pack(side=LEFT)
+        ttk.Label(self.headerFrame, text = "Welcome to NoviceKnight Chess, Chess for beginners", font= ('Courier', 22), background = 'light blue').pack(side=LEFT)
         ttk.Label(self.headerFrame, image = self.imgBP).pack(side = LEFT, expand = TRUE)
 
         #Widgets for the userChoice Frame. Add the two Labels, 7 buttons and 2 entry boxes
@@ -3226,6 +3226,7 @@ class ChessGame():
         for row in self.chessMap:
             for square in row:
                 square.state(['disabled'])
+
     
 def main():
     root = Tk()
