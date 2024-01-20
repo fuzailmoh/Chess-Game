@@ -5,7 +5,7 @@ The NoviceKnight Chess application that you will find in this repositery is a 2 
 
 How to run on local computer:
 1. Make sure you have python on your device. If you do not have python please follow the instructions here and download python. https://wiki.python.org/moin/BeginnersGuide/Download
-2. Once you have python make sure you have tkinter library and the PIL package downloaded. Please follow this to download tkinter https://docs.python.org/3/library/tkinter.html. Please follow this to download https://pypi.org/project/pillow/.
+2. Once you have python make sure you have tkinter library and the PIL package downloaded. Please follow this to download tkinter https://docs.python.org/3/library/tkinter.html. Please follow this to download PIL Package https://pypi.org/project/pillow/.
 3. Once all of this is downlaoded make a local folder called Python (or anything else) and then another folder called anything you would like and  copy the git repo into that folder. When you wanna run it go to the Python folder and then run from there. This is because the images utlized in the app use relative pathway for which the system has to leave the folder and then come back into it and go into the respective folder.
 4. Enjoy and feel free to email or message me any concerns at fuzailm@mcmaster.ca.
 
